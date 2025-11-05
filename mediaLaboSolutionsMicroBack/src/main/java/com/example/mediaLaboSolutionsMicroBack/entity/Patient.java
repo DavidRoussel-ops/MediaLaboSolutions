@@ -15,13 +15,15 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(nullable = false)
     private String nom;
+    @Column(nullable = false)
     private String prenom;
+    @Column(nullable = false)
     private LocalDate dateNaissance;
 
-    @ManyToOne
-    @JoinColumn(name = "genre_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
     @ManyToOne
