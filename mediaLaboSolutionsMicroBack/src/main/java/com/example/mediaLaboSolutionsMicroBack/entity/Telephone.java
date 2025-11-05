@@ -15,6 +15,5 @@ public class Telephone {
     private Long id;
 
     private String numero;
-    private String type;
 
 }
