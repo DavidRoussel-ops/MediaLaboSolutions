@@ -14,9 +14,6 @@ public class Adresse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String ligne;
-    private String ville;
-    private String codePostal;
-    private String pays;
+    private String libelle;
 
 }
