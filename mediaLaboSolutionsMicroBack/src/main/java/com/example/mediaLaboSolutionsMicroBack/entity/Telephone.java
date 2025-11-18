@@ -13,6 +13,8 @@ public class Telephone {
 
     private String numero;
 
+    public Telephone(){}
+
     public Telephone(Long id, String numero) {
         this.id = id;
         this.numero = numero;

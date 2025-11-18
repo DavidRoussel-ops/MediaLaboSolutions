@@ -31,6 +31,8 @@ public class Patient {
     @JoinColumn(name = "telephone_id")
     private Telephone telephone;
 
+    public Patient() {}
+
     public Patient(Long id, String nom, String prenom, LocalDate dateNaissance, Genre genre, Adresse adresse, Telephone telephone) {
         this.id = id;
         this.nom = nom;

@@ -13,6 +13,8 @@ public class Genre {
     @Column(nullable = false, unique = true)
     private String libelle;
 
+    public Genre(){}
+
     public Genre(Long id, String libelle) {
         this.id = id;
         this.libelle = libelle;

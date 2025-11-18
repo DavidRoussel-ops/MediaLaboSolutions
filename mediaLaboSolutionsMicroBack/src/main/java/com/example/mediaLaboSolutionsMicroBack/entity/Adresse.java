@@ -13,6 +13,8 @@ public class Adresse {
 
     private String libelle;
 
+    public Adresse(){}
+
     public Adresse(Long id, String libelle) {
         this.id = id;
         this.libelle = libelle;
