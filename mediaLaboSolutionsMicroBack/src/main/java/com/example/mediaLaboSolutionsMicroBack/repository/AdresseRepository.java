@@ -2,9 +2,8 @@ package com.example.mediaLaboSolutionsMicroBack.repository;
 
 import com.example.mediaLaboSolutionsMicroBack.entity.Adresse;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
 
 public interface AdresseRepository extends JpaRepository<Adresse, Long> {
     //Permet de retrouver un patient via le nom de sa ville
-    List<Adresse> findByLibelle(String libelle);
+    Adresse findByLibelle(String libelle);
 }

@@ -24,7 +24,7 @@ public class AdresseService {
         return adresseRepository.findById(id);
     }
 
-    public List<Adresse> getAdressesByLibelle(String libelle) {
+    public Adresse getAdressesByLibelle(String libelle) {
         return adresseRepository.findByLibelle(libelle);
     }
 
