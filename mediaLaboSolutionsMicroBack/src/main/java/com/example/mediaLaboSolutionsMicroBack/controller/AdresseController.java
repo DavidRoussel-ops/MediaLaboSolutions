@@ -2,6 +2,7 @@ package com.example.mediaLaboSolutionsMicroBack.controller;
 
 import com.example.mediaLaboSolutionsMicroBack.entity.Adresse;
 import com.example.mediaLaboSolutionsMicroBack.service.AdresseService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,9 @@ public class AdresseController {
     }
 
     @PostMapping
-    public Adresse createAdresse(@RequestBody Adresse adresse) {
-        return adresseService.createAdresse(adresse);
+    public ResponseEntity<Adresse> createAdresse(@RequestBody Adresse adresse) {
+        Adresse saved = adresseService.createAdresse(adresse);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
