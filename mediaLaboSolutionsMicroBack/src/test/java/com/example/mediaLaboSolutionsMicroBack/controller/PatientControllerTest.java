@@ -89,7 +89,7 @@ public class PatientControllerTest {
 
     @Test
     void testUpdatePatient() throws Exception {
-        Patient patient = patientRepository.findAll().get(0);
+        Patient patient = service.getAllPatients().get(0);
         Genre genre = genreRepository.findAll().get(0);
 
         String json = """
@@ -128,7 +128,7 @@ public class PatientControllerTest {
     
     @Test
     void testDeletePatientFound() throws Exception {
-        Patient patient = patientRepository.findAll().get(0);
+        Patient patient = service.getAllPatients().get(0);
 
         mockMvc.perform(delete("/api/patients/" + patient.getId()))
                 .andExpect(status().isNoContent());
