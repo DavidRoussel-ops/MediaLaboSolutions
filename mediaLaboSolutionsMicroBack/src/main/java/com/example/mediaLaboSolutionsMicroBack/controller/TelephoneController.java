@@ -2,6 +2,7 @@ package com.example.mediaLaboSolutionsMicroBack.controller;
 
 import com.example.mediaLaboSolutionsMicroBack.entity.Telephone;
 import com.example.mediaLaboSolutionsMicroBack.service.TelephoneService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,9 @@ public class TelephoneController {
     }
 
     @PostMapping
-    public Telephone createTelephone(@RequestBody Telephone telephone) {
-        return telephoneService.createTelephone(telephone);
+    public ResponseEntity<Telephone> createTelephone(@RequestBody Telephone telephone) {
+            Telephone saved = telephoneService.createTelephone(telephone);
+            return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
