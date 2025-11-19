@@ -2,6 +2,7 @@ package com.example.mediaLaboSolutionsMicroBack.controller;
 
 import com.example.mediaLaboSolutionsMicroBack.entity.Genre;
 import com.example.mediaLaboSolutionsMicroBack.service.GenreService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,9 @@ public class GenreController {
     }
 
     @PostMapping
-    public Genre createGenre(@RequestBody Genre genre) {
-        return genreService.createGenre(genre);
+    public ResponseEntity<Genre> createGenre(@RequestBody Genre genre) {
+        Genre saved = genreService.createGenre(genre);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
