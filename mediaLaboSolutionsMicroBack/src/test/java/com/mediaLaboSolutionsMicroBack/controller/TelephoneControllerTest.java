@@ -1,9 +1,9 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.controller;
+package com.mediaLaboSolutionsMicroBack.controller;
 
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Telephone;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.TelephoneRepository;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service.TelephoneService;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.PatientRepository;
+import com.mediaLaboSolutionsMicroBack.entity.Telephone;
+import com.mediaLaboSolutionsMicroBack.repository.TelephoneRepository;
+import com.mediaLaboSolutionsMicroBack.service.TelephoneService;
+import com.mediaLaboSolutionsMicroBack.repository.PatientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

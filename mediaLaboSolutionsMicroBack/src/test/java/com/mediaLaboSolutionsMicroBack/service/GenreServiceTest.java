@@ -1,7 +1,7 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service;
+package com.mediaLaboSolutionsMicroBack.service;
 
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Genre;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.GenreRepository;
+import com.mediaLaboSolutionsMicroBack.entity.Genre;
+import com.mediaLaboSolutionsMicroBack.repository.GenreRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

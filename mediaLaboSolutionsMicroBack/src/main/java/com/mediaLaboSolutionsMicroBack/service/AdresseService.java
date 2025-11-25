@@ -1,7 +1,7 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service;
+package com.mediaLaboSolutionsMicroBack.service;
 
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Adresse;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.AdresseRepository;
+import com.mediaLaboSolutionsMicroBack.entity.Adresse;
+import com.mediaLaboSolutionsMicroBack.repository.AdresseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

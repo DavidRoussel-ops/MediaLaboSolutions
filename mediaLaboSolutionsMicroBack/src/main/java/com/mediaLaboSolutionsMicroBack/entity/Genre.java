@@ -1,4 +1,4 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity;
+package com.mediaLaboSolutionsMicroBack.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository;
+package com.mediaLaboSolutionsMicroBack.repository;
 
 
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Patient;
+import com.mediaLaboSolutionsMicroBack.entity.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.List;

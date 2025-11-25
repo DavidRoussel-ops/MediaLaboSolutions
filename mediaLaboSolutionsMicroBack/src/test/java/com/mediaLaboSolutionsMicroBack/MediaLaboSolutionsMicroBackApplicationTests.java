@@ -1,4 +1,4 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack;
+package com.mediaLaboSolutionsMicroBack;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

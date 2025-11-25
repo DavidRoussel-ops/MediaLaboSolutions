@@ -1,7 +1,7 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service;
+package com.mediaLaboSolutionsMicroBack.service;
 
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Telephone;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.TelephoneRepository;
+import com.mediaLaboSolutionsMicroBack.entity.Telephone;
+import com.mediaLaboSolutionsMicroBack.repository.TelephoneRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

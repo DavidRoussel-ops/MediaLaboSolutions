@@ -1,9 +1,9 @@
-package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.controller;
+package com.mediaLaboSolutionsMicroBack.controller;
 
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Adresse;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.AdresseRepository;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service.AdresseService;
-import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.PatientRepository;
+import com.mediaLaboSolutionsMicroBack.entity.Adresse;
+import com.mediaLaboSolutionsMicroBack.repository.AdresseRepository;
+import com.mediaLaboSolutionsMicroBack.service.AdresseService;
+import com.mediaLaboSolutionsMicroBack.repository.PatientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
