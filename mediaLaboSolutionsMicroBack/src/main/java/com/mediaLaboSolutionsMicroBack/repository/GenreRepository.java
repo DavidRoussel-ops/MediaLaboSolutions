@@ -1,6 +1,6 @@
-package com.mediaLaboSolutionsMicroBack.repository;
+package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository;
 
-import com.mediaLaboSolutionsMicroBack.entity.Genre;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GenreRepository extends JpaRepository<Genre, Long> {

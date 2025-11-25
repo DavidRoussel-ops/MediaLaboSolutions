@@ -13,7 +13,7 @@ public class Patient {
     private String nom;
     @Column(nullable = false)
     private String prenom;
-    @Column(nullable = false)
+    @Column(name = "date_naissance", nullable = false)
     private LocalDate dateNaissance;
 
     @ManyToOne(optional = false)

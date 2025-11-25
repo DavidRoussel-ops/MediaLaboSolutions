@@ -1,7 +1,7 @@
-package com.mediaLaboSolutionsMicroBack.service;
+package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service;
 
-import com.mediaLaboSolutionsMicroBack.entity.Telephone;
-import com.mediaLaboSolutionsMicroBack.repository.TelephoneRepository;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Telephone;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository.TelephoneRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

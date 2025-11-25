@@ -1,7 +1,7 @@
-package com.mediaLaboSolutionsMicroBack.controller;
+package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.controller;
 
-import com.mediaLaboSolutionsMicroBack.entity.Genre;
-import com.mediaLaboSolutionsMicroBack.service.GenreService;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Genre;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.service.GenreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.mediaLaboSolutionsMicroBack.repository;
+package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository;
 
-import com.mediaLaboSolutionsMicroBack.entity.Telephone;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Telephone;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TelephoneRepository extends JpaRepository<Telephone, Long> {

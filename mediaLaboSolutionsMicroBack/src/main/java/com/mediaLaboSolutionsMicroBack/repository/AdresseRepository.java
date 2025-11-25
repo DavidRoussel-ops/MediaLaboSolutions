@@ -1,6 +1,6 @@
-package com.mediaLaboSolutionsMicroBack.repository;
+package com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.repository;
 
-import com.mediaLaboSolutionsMicroBack.entity.Adresse;
+import com.mediaLaboSolutionsMicroBack.mediaLaboSolutionsMicroBack.entity.Adresse;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdresseRepository extends JpaRepository<Adresse, Long> {
