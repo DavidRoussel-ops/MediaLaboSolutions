@@ -3,6 +3,11 @@ package com.mediaLaboSolutionsGateway.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 
@@ -12,11 +17,34 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http
+        return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
+                        .pathMatchers("/api/**").authenticated()
                         .anyExchange().permitAll()
-                );
-        return http.build();
+                )
+                .httpBasic(httpBasicSpec -> {})
+                .build();
+    }
+
+    @Bean
+    public MapReactiveUserDetailsService userDetailsService() {
+
+        UserDetails user = User.withUsername("user")
+                .password(passwordEncoder().encode("user1234!"))
+                .roles("USER")
+                .build();
+
+        UserDetails admin = User.withUsername("admin")
+                .password(passwordEncoder().encode("admin1234!"))
+                .roles("ADMIN")
+                .build();
+
+        return new MapReactiveUserDetailsService(user, admin);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
