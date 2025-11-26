@@ -14,6 +14,15 @@ public class GatewayConfig {
                 .route("patient-service", r -> r
                         .path("/api/patients/**")
                         .uri("http://localhost:8081"))
+                .route("adresse-service", r -> r
+                        .path("/api/adresses/**")
+                        .uri("http://localhost:8081"))
+                .route("genre-service", r -> r
+                        .path("/api/genres/**")
+                        .uri("http://localhost:8081"))
+                .route("telephone-service", r -> r
+                        .path("/api/telephones/**")
+                        .uri("http://localhost:8081"))
                 .build();
     }
 }
