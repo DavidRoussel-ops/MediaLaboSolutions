@@ -2,10 +2,12 @@ package com.mediaLaboSolutionsGateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
@@ -19,24 +21,26 @@ public class SpringSecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .cors(corsSpec -> {})
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/api/**").authenticated()
-                        .anyExchange().permitAll()
+                        //.pathMatchers("/api/**").authenticated()
+                        .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .anyExchange().authenticated()
                 )
                 .httpBasic(httpBasicSpec -> {})
                 .build();
     }
 
     @Bean
-    public MapReactiveUserDetailsService userDetailsService() {
+    public MapReactiveUserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
 
         UserDetails user = User.withUsername("user")
-                .password(passwordEncoder().encode("user1234!"))
+                .password(passwordEncoder.encode("user1234!"))
                 .roles("USER")
                 .build();
 
         UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder().encode("admin1234!"))
+                .password(passwordEncoder.encode("admin1234!"))
                 .roles("ADMIN")
                 .build();
 
@@ -45,6 +49,6 @@ public class SpringSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 }
