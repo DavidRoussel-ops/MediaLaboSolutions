@@ -1,0 +1,15 @@
+<h2>Détail du patient</h2>
+@if (loaded()) {
+    @if (patient()) {
+    <div>
+        <p>Nom : {{ patient().nom }}</p>
+        <p>Prénom : {{ patient().prenom }}</p>
+        <p>Date de naissance : {{ patient().dateNaissance }}</p>
+    </div>
+} @else {
+    <p>Patient introuvable.</p>
+}
+} @else {
+    <p>Chargement du détail...</p>
+}
+
