@@ -18,3 +18,12 @@
  @else {
   <p>Chargement en cours...</p>
 }
+
+<button (click)="toogleForm()">
+  {{ showForm ? 'Fermer le formulaire' : 'Nouveau patient' }}
+</button>
+
+@if (showForm) {
+  <app-patient-form mode="create" (formSubmit)="addPatient($event)"></app-patient-form>
+}
+
