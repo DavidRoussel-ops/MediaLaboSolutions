@@ -16,3 +16,13 @@
     <p>Chargement du détail...</p>
 }
 
+<button (click)="toogleForm()">
+    {{ showForm ? 'Fermer le formulaire' : 'Modifier les informations du patient'}}
+</button>
+
+@if (showForm) {
+    <app-patient-form mode="edit" [patientData]="patient()" (formSubmit)="updatePatient($event)"></app-patient-form>
+}
+
+
+
