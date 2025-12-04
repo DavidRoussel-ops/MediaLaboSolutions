@@ -1,0 +1,35 @@
+<h2>{{ mode === 'create' ? 'Ajouter un patient' : 'Modifier un patient' }}</h2>
+
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+  <label>Nom :</label>
+  <input type="text" formControlName="nom" />
+
+  <label>Prénom :</label>
+  <input type="text" formControlName="prenom" />
+
+  <label>Date de naissance :</label>
+  <input type="date" formControlName="dateNaissance" />
+
+  <div formGroupName="genre">
+    <input type="hidden" formControlName="id" />
+    <label>Genre :</label>
+    <input type="text" formControlName="libelle" />
+  </div>
+  
+  <div formGroupName="adresse">
+    <input type="hidden" formControlName="id" />
+    <label>Adresse :</label>
+    <input type="text" formControlName="libelle" />
+  </div>
+  
+  <div formGroupName="telephone">
+    <input type="hidden" formControlName="id" />
+    <label>Téléphone :</label>
+    <input type="text" formControlName="numero" />
+  </div>
+
+  <button type="submit">
+    {{ mode === 'create' ? 'Créer' : 'Mettre à jour' }}
+  </button>
+</form>
+

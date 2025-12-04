@@ -20,4 +20,12 @@ export class PatientService {
   getPatientById(id : number) : Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`, { headers : this.headers });
   }
+
+  addPatient(patient : any) : Observable<any> {
+    return this.http.post<any>(this.baseUrl, patient);
+  }
+
+  updatePatient(id : number, patient : any) : Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, patient);
+  }
 }
