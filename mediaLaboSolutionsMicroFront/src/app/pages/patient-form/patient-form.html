@@ -1,31 +1,34 @@
 <h2>{{ mode === 'create' ? 'Ajouter un patient' : 'Modifier un patient' }}</h2>
 
 <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
-  <label>Nom :</label>
-  <input type="text" formControlName="nom" />
+  <label for="nom">Nom :</label>
+  <input id="nom" type="text" formControlName="nom" />
 
-  <label>Prénom :</label>
-  <input type="text" formControlName="prenom" />
+  <label for="prenom">Prénom :</label>
+  <input id="prenom" type="text" formControlName="prenom" />
 
-  <label>Date de naissance :</label>
-  <input type="date" formControlName="dateNaissance" />
+  <label for="dateNaissance">Date de naissance :</label>
+  <input id="dateNaissance" type="date" formControlName="dateNaissance" />
 
   <div formGroupName="genre">
-    <input type="hidden" formControlName="id" />
-    <label>Genre :</label>
-    <input type="text" formControlName="libelle" />
+    <label for="genre">Genre :</label>
+    <select id="genre" formControlName="id" (change)="onGenreChange($event)">
+      @for (genre of genres; track $index) {
+        <option [value]="genre.id">{{ genre.libelle }}</option>
+      }
+    </select>  
   </div>
   
   <div formGroupName="adresse">
     <input type="hidden" formControlName="id" />
-    <label>Adresse :</label>
-    <input type="text" formControlName="libelle" />
+    <label for="adresse">Adresse :</label>
+    <input id="adresse" type="text" formControlName="libelle" />
   </div>
   
   <div formGroupName="telephone">
     <input type="hidden" formControlName="id" />
-    <label>Téléphone :</label>
-    <input type="text" formControlName="numero" />
+    <label for="telephone">Téléphone :</label>
+    <input id="telephone" type="text" formControlName="numero" />
   </div>
 
   <button type="submit">
