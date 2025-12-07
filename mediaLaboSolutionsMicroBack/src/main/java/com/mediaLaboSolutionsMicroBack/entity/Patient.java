@@ -20,11 +20,11 @@ public class Patient {
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "telephone_id")
     private Telephone telephone;
 
