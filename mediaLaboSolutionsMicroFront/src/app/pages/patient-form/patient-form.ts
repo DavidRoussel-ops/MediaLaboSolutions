@@ -17,6 +17,11 @@ export class PatientForm {
 
   patientForm : FormGroup;
 
+  genres = [
+    { id : 1, libelle : 'F'},
+    { id : 2, libelle : 'M'}
+  ];
+
   constructor(private fb : FormBuilder) {
     this.patientForm = this.fb.group({
       nom : ['', Validators.required],
@@ -46,6 +51,17 @@ export class PatientForm {
   onSubmit() : void {
     if (this.patientForm.valid) {
       this.formSubmit.emit(this.patientForm.value);
+    }
+  }
+
+  onGenreChange(event : any) {
+    const selectedId = +event.target.value;
+    const selectedGenre = this.genres.find(genre => genre.id === selectedId);
+    if (selectedGenre) {
+      this.patientForm.get('genre')?.setValue({
+        id : selectedGenre.id,
+        libelle : selectedGenre.libelle
+      });
     }
   }
 
