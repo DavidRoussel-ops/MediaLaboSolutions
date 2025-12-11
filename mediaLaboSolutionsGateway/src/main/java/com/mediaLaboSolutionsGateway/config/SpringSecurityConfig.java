@@ -40,7 +40,7 @@ public class SpringSecurityConfig {
                 .build();
 
         UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder.encode("admin1234!"))
+                .password(passwordEncoder.encode("admin123"))
                 .roles("ADMIN")
                 .build();
 
