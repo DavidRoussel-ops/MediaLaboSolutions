@@ -20,7 +20,7 @@ public class NoteService {
         return repository.findAll();
     }
 
-    public Optional<Note> getNoteById(Long id) {
+    public Optional<Note> getNoteById(String id) {
         return repository.findById(id);
     }
 
@@ -32,14 +32,14 @@ public class NoteService {
         return repository.save(note);
     }
 
-    public Optional<Note> updateNote(Long id, Note update) {
+    public Optional<Note> updateNote(String id, Note update) {
         return repository.findById(id).map(note -> {
             note.setNote(update.getNote());
             return repository.save(update);
         });
     }
 
-    public boolean deleteNote(Long id) {
+    public boolean deleteNote(String id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;
