@@ -21,6 +21,9 @@ public class NoteController {
 
     @PostMapping
     public ResponseEntity<Note> addNote(@RequestBody Note note) {
+        if (note == null || note.getPatient() == null || note.getNote() == null) {
+            return ResponseEntity.badRequest().build();
+        }
         Note saved = service.addNote(note);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
