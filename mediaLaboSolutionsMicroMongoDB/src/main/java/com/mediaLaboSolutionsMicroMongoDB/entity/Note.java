@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "notes")
 public class Note {
     @Id
-    private Long id;
+    private String id;
     private Long patId;
     private String patient;
     private String note;
@@ -14,18 +14,18 @@ public class Note {
     public Note() {
     }
 
-    public Note(Long id, Long patId, String patient, String note) {
+    public Note(String id, Long patId, String patient, String note) {
         this.id = id;
         this.patId = patId;
         this.patient = patient;
         this.note = note;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
