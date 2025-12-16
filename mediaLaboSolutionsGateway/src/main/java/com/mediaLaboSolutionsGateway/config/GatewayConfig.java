@@ -23,6 +23,9 @@ public class GatewayConfig {
                 .route("telephone-service", r -> r
                         .path("/api/telephones/**")
                         .uri("http://localhost:8081"))
+                .route("notes-service", r -> r
+                        .path("/api/notes/**")
+                        .uri("http://localhost:8082"))
                 .build();
     }
 }
