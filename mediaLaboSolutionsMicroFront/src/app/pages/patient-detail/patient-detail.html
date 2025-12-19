@@ -16,6 +16,20 @@
     <p>Chargement du détail...</p>
 }
 
+<h3>Notes concernant le patient.</h3>
+<ul>
+    @for (note of notes(); track $index) {
+        <li>{{ note.note }}</li>
+    }
+</ul>
+<button (click)="toogleFormNote()">
+    {{ showFormNote ? 'Fermer le formulaire' : 'Ajouter une note au patient'}}
+</button>
+
+@if (showFormNote) {
+    <app-note-form (noteAdded)="handleNoteAdded($event)"></app-note-form>
+}
+
 <button (click)="toogleForm()">
     {{ showForm ? 'Fermer le formulaire' : 'Modifier les informations du patient'}}
 </button>
