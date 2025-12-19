@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class PatientService {
   private baseUrl = "/api/patients";
   private headers = new HttpHeaders({
-    "Authorization" : "Basic " + btoa("admin:admin1234!")
+    "Authorization" : "Basic " + btoa("admin:admin123")
   });
 
   constructor(private http : HttpClient) {}
