@@ -25,16 +25,16 @@ public class AssessmentService {
         PatientDto patientDto = patientClient.getPatientById(patientId);
         List<NoteDto> noteDtos = notesClient.getNotesByPatient(patientId);
 
-        int age = calculateAge(patientDto.getDob());
+        int age = calculateAge(patientDto.getDateNaissance());
         int triggerCount = countTriggers(noteDtos);
 
-        RiskLevel level = computeRiskLevel(age, patientDto.getGender(), triggerCount);
+        RiskLevel level = computeRiskLevel(age, patientDto.getGenre().getLibelle(), triggerCount);
 
         AssessmentResult result = new AssessmentResult();
         result.setPatientId(patientId);
-        result.setPatientName(patientDto.getGiven() + " " + patientDto.getFamily());
+        result.setPatientName(patientDto.getPrenom() + " " + patientDto.getNom());
         result.setAge(age);
-        result.setGender(patientDto.getGender());
+        result.setGender(patientDto.getGenre().getLibelle());
         result.setTriggerCount(triggerCount);
         result.setRiskLevel(level);
         result.setMessage("Patient: " + result.getPatientName() + " (" + age + " ans) risque: " + level);
