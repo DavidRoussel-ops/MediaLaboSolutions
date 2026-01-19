@@ -19,7 +19,7 @@ public class NotesClient {
     
     public List<NoteDto> getNotesByPatient(Integer id) {
         return restTemplate.exchange(
-                "http://localhost:8082/notes/patient/" + id,
+                "http://localhost:8082/api/notes/patient/" + id,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<NoteDto>>() {}
