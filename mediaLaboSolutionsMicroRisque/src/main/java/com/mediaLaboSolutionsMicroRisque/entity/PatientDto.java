@@ -3,10 +3,12 @@ package com.mediaLaboSolutionsMicroRisque.entity;
 public class PatientDto {
 
     private Integer id;
-    private String family;
-    private String given;
-    private String gender;
-    private String dob;
+    private String nom;
+    private String prenom;
+    private String dateNaissance;
+    private GenreDto genre;
+    private AdresseDto adresse;
+    private TelephoneDto telephone;
 
     public Integer getId() {
         return id;
@@ -16,35 +18,51 @@ public class PatientDto {
         this.id = id;
     }
 
-    public String getFamily() {
-        return family;
+    public String getNom() {
+        return nom;
     }
 
-    public void setFamily(String family) {
-        this.family = family;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getGiven() {
-        return given;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setGiven(String given) {
-        this.given = given;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public String getGender() {
-        return gender;
+    public String getDateNaissance() {
+        return dateNaissance;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setDateNaissance(String dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
-    public String getDob() {
-        return dob;
+    public GenreDto getGenre() {
+        return genre;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+    public void setGenre(GenreDto genre) {
+        this.genre = genre;
+    }
+
+    public AdresseDto getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(AdresseDto adresse) {
+        this.adresse = adresse;
+    }
+
+    public TelephoneDto getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(TelephoneDto telephone) {
+        this.telephone = telephone;
     }
 }
