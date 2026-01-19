@@ -15,7 +15,7 @@ public class PatientClient {
 
     public PatientDto getPatientById(Integer id) {
         return restTemplate.getForObject(
-                "http://localhost:8081/patients/" + id,
+                "http://localhost:8081/api/patients/" + id,
                 PatientDto.class
         );
     }
