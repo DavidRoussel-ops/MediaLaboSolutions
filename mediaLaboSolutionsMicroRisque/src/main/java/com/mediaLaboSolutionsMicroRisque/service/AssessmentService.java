@@ -42,11 +42,12 @@ public class AssessmentService {
         return result;
     }
 
-    private int calculateAge(String dob) {
+    int calculateAge(String dob) {
+        if (dob == null || dob.isBlank()) return 0;
         return Period.between(LocalDate.parse(dob), LocalDate.now()).getYears();
     }
 
-    private int countTriggers(List<NoteDto> noteDtos) {
+    int countTriggers(List<NoteDto> noteDtos) {
         String[] triggers = {
                 "Hémoglobine A1C", "Microalbumine", "Taille", "Poids",
                 "Fumeur", "Fumeuse", "Anormal", "Cholestérol", "Vertiges",
@@ -65,7 +66,7 @@ public class AssessmentService {
         return count;
     }
 
-    private RiskLevel computeRiskLevel(int age, String gender, int triggers) {
+    RiskLevel computeRiskLevel(int age, String gender, int triggers) {
         if (triggers == 0) return RiskLevel.NONE;
 
         if (age > 30) {
