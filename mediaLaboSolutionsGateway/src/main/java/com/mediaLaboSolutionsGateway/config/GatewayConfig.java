@@ -26,6 +26,9 @@ public class GatewayConfig {
                 .route("notes-service", r -> r
                         .path("/api/notes/**")
                         .uri("http://localhost:8082"))
+                .route("assessment-service", r -> r
+                        .path("/assess/**")
+                        .uri("http://localhost:8083"))
                 .build();
     }
 }
