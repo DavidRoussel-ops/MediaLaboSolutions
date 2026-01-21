@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.MapReactiveUserDetailsServi
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -23,7 +22,6 @@ public class SpringSecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(corsSpec -> {})
                 .authorizeExchange(exchanges -> exchanges
-                        //.pathMatchers("/api/**").authenticated()
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyExchange().authenticated()
                 )
