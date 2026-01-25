@@ -9,6 +9,10 @@
         <p>Adresse postale : {{ patient().adresse?.libelle }}</p>
         <p>Téléphone : {{ patient().telephone?.numero }}</p>
     </div>
+
+@if (assessment()) {
+  <p><strong>Évaluation risque du patient :</strong> {{ assessment()?.riskLevel }}</p>
+}
 } @else {
     <p>Patient introuvable.</p>
 }
