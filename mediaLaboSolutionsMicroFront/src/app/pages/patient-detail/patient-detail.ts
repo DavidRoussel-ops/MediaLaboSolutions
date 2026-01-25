@@ -4,6 +4,7 @@ import { PatientService } from '../../services/patient';
 import { PatientForm } from '../patient-form/patient-form';
 import { Note, NoteService } from '../../services/note';
 import { NoteForm } from '../note-form/note-form';
+import {Assessment, AssessmentService } from '../../services/assessment';
 
 @Component({
   selector: 'app-patient-detail',
@@ -22,10 +23,13 @@ export class PatientDetail implements OnInit {
   notes = signal<Note[]>([]);
   showFormNote = false;
 
+  assessment = signal<Assessment | null>(null);
+
   constructor(
     private route : ActivatedRoute,
     private patientService : PatientService,
-    private noteService : NoteService
+    private noteService : NoteService,
+    private assessmentService : AssessmentService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +42,14 @@ export class PatientDetail implements OnInit {
     this.patientId = Number(this.route.snapshot.paramMap.get('id'));
     this.patientService.getPatientById(this.patientId).subscribe(p => this.patientName = p.nom);
     this.loadNotes();
+    this.loadAssessment();
+  }
+
+  loadAssessment() : void {
+    this.assessmentService.getAssessment(this.patientId).subscribe(a => {
+      console.log("Assessment reçu : ", a);
+      this.assessment.set(a);
+    });
   }
 
   updatePatient(patient : any) {
@@ -75,6 +87,7 @@ export class PatientDetail implements OnInit {
 
     this.noteService.addNote(note).subscribe(saved => {
       this.notes.update(current => [...current, saved]);
+      this.loadAssessment();
     });
   }
 }
