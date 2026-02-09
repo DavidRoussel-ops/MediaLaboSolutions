@@ -13,22 +13,22 @@ public class GatewayConfig {
         return builder.routes()
                 .route("patient-service", r -> r
                         .path("/api/patients/**")
-                        .uri("http://localhost:8081"))
+                        .uri("http://patient-service:8081"))
                 .route("adresse-service", r -> r
                         .path("/api/adresses/**")
-                        .uri("http://localhost:8081"))
+                        .uri("http://patient-service:8081"))
                 .route("genre-service", r -> r
                         .path("/api/genres/**")
-                        .uri("http://localhost:8081"))
+                        .uri("http://patient-service:8081"))
                 .route("telephone-service", r -> r
                         .path("/api/telephones/**")
-                        .uri("http://localhost:8081"))
+                        .uri("http://patient-service:8081"))
                 .route("notes-service", r -> r
                         .path("/api/notes/**")
-                        .uri("http://localhost:8082"))
+                        .uri("http://notes-service:8082"))
                 .route("assessment-service", r -> r
                         .path("/assess/**")
-                        .uri("http://localhost:8083"))
+                        .uri("http://risk-service:8083"))
                 .build();
     }
 }
