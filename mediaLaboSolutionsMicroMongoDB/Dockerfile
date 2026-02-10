@@ -13,6 +13,9 @@ RUN ./mvnw -q clean package -DskipTests
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 
+USER root
+RUN apt-get update && apt-get install -y curl
+
 RUN useradd -m spring
 USER spring
 
