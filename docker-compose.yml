@@ -1,0 +1,93 @@
+version: '3.9'
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: medilabo
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - medilabo-net
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - medilabo-net
+
+  patient-service:
+    build: ./mediaLaboSolutionsMicroBack
+    container_name: patient-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/medilabo
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mysql
+    networks:
+      - medilabo-net
+
+  notes-service:
+    build: ./mediaLaboSolutionsMicroMongoDB
+    container_name: notes-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/notes
+    depends_on:
+      - mongodb
+    networks:
+      - medilabo-net
+
+  risk-service:
+    build: ./mediaLaboSolutionsMicroRisque
+    container_name: risk-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - patient-service
+      - notes-service
+    networks:
+      - medilabo-net
+
+  gateway-service:
+    build: ./mediaLaboSolutionsGateway
+    container_name: gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - patient-service
+      - notes-service
+      - risk-service
+    networks:
+      - medilabo-net
+
+  front:
+    build: ./mediaLaboSolutionsMicroFront
+    container_name: front
+    ports:
+      - "4200:80"
+    depends_on:
+      - gateway-service
+    networks:
+      - medilabo-net
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+networks:
+  medilabo-net:
+    driver: bridge
