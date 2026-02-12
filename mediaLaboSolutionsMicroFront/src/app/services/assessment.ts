@@ -17,7 +17,7 @@ export interface Assessment {
 })
 export class AssessmentService {
 
-  private apiUrl = 'http://localhost:8080/assess';
+  private apiUrl = '/api/assess';
 
   constructor(private http : HttpClient) {}
 
