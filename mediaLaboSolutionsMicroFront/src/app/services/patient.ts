@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class PatientService {
   private baseUrl = "/api/patients";
   private headers = new HttpHeaders({
-    "Authorization" : "Basic " + btoa("admin:admin123")
+    "Authorization" : "Basic " + btoa("admin:admin")
   });
 
   constructor(private http : HttpClient) {}
@@ -22,10 +22,10 @@ export class PatientService {
   }
 
   addPatient(patient : any) : Observable<any> {
-    return this.http.post<any>(this.baseUrl, patient);
+    return this.http.post<any>(this.baseUrl, patient, { headers : this.headers });
   }
 
   updatePatient(id : number, patient : any) : Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/${id}`, patient);
+    return this.http.put<any>(`${this.baseUrl}/${id}`, patient, { headers : this.headers });
   }
 }

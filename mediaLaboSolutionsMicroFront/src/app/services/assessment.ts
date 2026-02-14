@@ -23,7 +23,7 @@ export class AssessmentService {
 
   getAssessment(patientId : number) : Observable<Assessment> {
     const headers = new HttpHeaders({
-      Authorization : 'Basic ' + btoa("admin:admin123")
+      Authorization : 'Basic ' + btoa("admin:admin")
     });
     return this.http.get<Assessment>(`${this.apiUrl}/${patientId}`, { headers });
   }
