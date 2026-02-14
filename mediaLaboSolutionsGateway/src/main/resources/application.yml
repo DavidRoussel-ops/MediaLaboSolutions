@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mediaLaboSolutionsGateway
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: patient-service
+          uri: http://patient-service:8081
+          predicates:
+            - Path=/api/patients/**
+
+        - id: notes-service
+          uri: http://notes-service:8082
+          predicates:
+            - Path=/api/notes/**
+
+        - id: risk-service
+          uri: http://risk-service:8083
+          predicates:
+            - Path=/api/risk/**
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
