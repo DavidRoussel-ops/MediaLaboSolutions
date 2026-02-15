@@ -15,7 +15,7 @@ export interface Note {
 export class NoteService {
     private baseUrl = "/api/notes";
     private headers = new HttpHeaders({
-        "Authorization" : "Basic " + btoa("admin:admin")
+        "Authorization" : "Basic " + btoa("admin:admin123")
     });
 
     constructor(private http : HttpClient) {}
