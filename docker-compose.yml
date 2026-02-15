@@ -12,6 +12,7 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mediaLaboSolutionsMicroBack/init:/docker-entrypoint-initdb.d
     networks:
       - medilabo-net
 
