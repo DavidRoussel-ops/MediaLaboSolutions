@@ -22,7 +22,7 @@ public class SpringSecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(corsSpec -> {})
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/actuator/health").permitAll()
+                        .pathMatchers("/actuator/health", "/actuator/health/**").permitAll()
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyExchange().authenticated()
                 )
