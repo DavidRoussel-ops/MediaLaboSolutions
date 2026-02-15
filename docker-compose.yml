@@ -22,6 +22,7 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+      - ./mediaLaboSolutionsMicroMongoDB/init:/docker-entrypoint-initdb.d
     networks:
       - medilabo-net
 
