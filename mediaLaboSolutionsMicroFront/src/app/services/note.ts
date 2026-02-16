@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { API_URL } fron '../api.config';
 
 export interface Note {
     id? : string;
@@ -13,7 +14,7 @@ export interface Note {
     providedIn : 'root'
 })
 export class NoteService {
-    private baseUrl = "/api/notes";
+    private baseUrl = `${API_URL}/api/notes`;
     private headers = new HttpHeaders({
         "Authorization" : "Basic " + btoa("admin:admin123")
     });

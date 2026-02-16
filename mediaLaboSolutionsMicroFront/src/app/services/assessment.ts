@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL } fron '../api.config';
 
 export interface Assessment {
   patientId : number;
@@ -17,7 +18,7 @@ export interface Assessment {
 })
 export class AssessmentService {
 
-  private apiUrl = '/api/assess';
+  private apiUrl = `${API_URL}/api/assess`;
 
   constructor(private http : HttpClient) {}
 

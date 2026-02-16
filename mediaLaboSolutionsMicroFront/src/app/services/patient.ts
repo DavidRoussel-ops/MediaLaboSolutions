@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL } fron '../api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientService {
-  private baseUrl = "/api/patients";
+  private baseUrl = `${API_URL}/api/patients`;
   private headers = new HttpHeaders({
     "Authorization" : "Basic " + btoa("admin:admin123")
   });
