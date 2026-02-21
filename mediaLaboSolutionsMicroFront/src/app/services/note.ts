@@ -14,7 +14,7 @@ export interface Note {
     providedIn : 'root'
 })
 export class NoteService {
-    private baseUrl = `${API_URL}/api/notes`;
+    private baseUrl = `${API_URL}/notes`;
     private headers = new HttpHeaders({
         "Authorization" : "Basic " + btoa("admin:admin123")
     });

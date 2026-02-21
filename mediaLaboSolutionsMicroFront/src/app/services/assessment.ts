@@ -18,7 +18,7 @@ export interface Assessment {
 })
 export class AssessmentService {
 
-  private apiUrl = `${API_URL}/api/assess`;
+  private apiUrl = `${API_URL}/assess`;
 
   constructor(private http : HttpClient) {}
 

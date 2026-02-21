@@ -7,7 +7,7 @@ import { API_URL } from '../api.config';
   providedIn: 'root',
 })
 export class PatientService {
-  private baseUrl = `${API_URL}/api/patients`;
+  private baseUrl = `${API_URL}/patients`;
   private headers = new HttpHeaders({
     "Authorization" : "Basic " + btoa("admin:admin123")
   });
