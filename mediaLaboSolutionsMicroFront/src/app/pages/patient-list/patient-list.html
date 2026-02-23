@@ -11,7 +11,7 @@
       <ul class="patient-list">
         @for (patient of patients(); track patient.id) {
           <li class="patient-item">
-            <a [routerLink]="['/patients', patient.id]" class="patient-linl">
+            <a [routerLink]="['/patients', patient.id]" class="patient-link">
               Nom : {{ patient.nom }} Prénom : {{ patient.prenom }}
             </a>
           </li>
