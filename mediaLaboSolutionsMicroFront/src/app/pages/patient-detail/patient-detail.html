@@ -1,46 +1,63 @@
-<h2>Détail du patient</h2>
-@if (loaded()) {
+<app-header></app-header>
+
+<div class="detail-container">
+
+  <h2>Détail du patient</h2>
+
+  @if (loaded()) {
+
     @if (patient()) {
-    <div>
+
+      <div class="patient-info">
         <p>Nom : {{ patient().nom }}</p>
         <p>Prénom : {{ patient().prenom }}</p>
         <p>Date de naissance : {{ patient().dateNaissance }}</p>
         <p>Genre : {{ patient().genre?.libelle }}</p>
         <p>Adresse postale : {{ patient().adresse?.libelle }}</p>
         <p>Téléphone : {{ patient().telephone?.numero }}</p>
-    </div>
+      </div>
 
-@if (assessment()) {
-  <p><strong>Évaluation risque du patient :</strong> {{ assessment()?.riskLevel }}</p>
-}
-} @else {
-    <p>Patient introuvable.</p>
-}
-} @else {
-    <p>Chargement du détail...</p>
-}
+      @if (assessment()) {
+        <p class="assessment">
+          <strong>Évaluation risque du patient :</strong> {{ assessment()?.riskLevel }}
+        </p>
+      }
 
-<h3>Notes concernant le patient.</h3>
-<ul>
-    @for (note of notes(); track $index) {
-        <li>{{ note.note }}</li>
+    } @else {
+      <p>Patient introuvable.</p>
     }
-</ul>
-<button (click)="toogleFormNote()">
+
+  } @else {
+    <p>Chargement du détail...</p>
+  }
+
+  <h3>Notes concernant le patient.</h3>
+
+  <ul class="notes-list">
+    @for (note of notes(); track $index) {
+      <li>{{ note.note }}</li>
+    }
+  </ul>
+
+  <button class="btn-primary" (click)="toogleFormNote()">
     {{ showFormNote ? 'Fermer le formulaire' : 'Ajouter une note au patient'}}
-</button>
+  </button>
 
-@if (showFormNote) {
-    <app-note-form (noteAdded)="handleNoteAdded($event)"></app-note-form>
-}
+  @if (showFormNote) {
+  <app-note-form (noteAdded)="handleNoteAdded($event)"></app-note-form>
+  }
 
-<button (click)="toogleForm()">
+  <button class="btn-secondary" (click)="toogleForm()">
     {{ showForm ? 'Fermer le formulaire' : 'Modifier les informations du patient'}}
-</button>
+  </button>
 
-@if (showForm) {
+  @if (showForm) {
     <app-patient-form mode="edit" [patientData]="patient()" (formSubmit)="updatePatient($event)"></app-patient-form>
-}
+  }
+
+</div>
+
+
 
 
 

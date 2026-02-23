@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { PatientService } from '../../services/patient';
 import { HttpClientModule } from '@angular/common/http';
 import { PatientForm } from '../patient-form/patient-form';
+import { Header } from '../../header/header';
 
 @Component({
   selector: 'app-patient-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule, PatientForm],
+  imports: [CommonModule, RouterModule, HttpClientModule, PatientForm, Header],
   templateUrl: './patient-list.html',
   styleUrls: ['./patient-list.scss']
 })

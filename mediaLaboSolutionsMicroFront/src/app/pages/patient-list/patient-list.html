@@ -1,29 +1,38 @@
-<h2>Liste des patients</h2>
+<app-header></app-header>
 
-@if (loaded()) {
-  @if (patients().length > 0) {
-  <ul>
-    @for (patient of patients(); track patient.id) {
-      <li>
-      <a [routerLink]="['/patients', patient.id]">
-        Nom : {{ patient.nom }} Prénom : {{ patient.prenom }}
-      </a>
-    </li>
+<div class="page-container">
+
+  <h2 class="title">Liste des patients</h2>
+
+  @if (loaded()) {
+
+    @if (patients().length > 0) {
+
+      <ul class="patient-list">
+        @for (patient of patients(); track patient.id) {
+          <li class="patient-item">
+            <a [routerLink]="['/patients', patient.id]" class="patient-linl">
+              Nom : {{ patient.nom }} Prénom : {{ patient.prenom }}
+            </a>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty">Aucun patient trouvé.</p>
     }
-  </ul>
-} @else {
-  <p>Aucun patient trouvé.</p>
-}
-}
- @else {
-  <p>Chargement en cours...</p>
-}
 
-<button (click)="toogleForm()">
-  {{ showForm ? 'Fermer le formulaire' : 'Nouveau patient' }}
-</button>
+  } @else {
+    <p class="loading">Chargement en cours...</p>
+  }
 
-@if (showForm) {
+  <button class="btn-primary" (click)="toogleForm()">
+    {{ showForm ? 'Fermer le formulaire' : 'Nouveau patient' }}
+  </button>
+
+  @if (showForm) {
   <app-patient-form mode="create" (formSubmit)="addPatient($event)"></app-patient-form>
-}
+  }
+
+</div>
+
 

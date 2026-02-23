@@ -5,11 +5,12 @@ import { PatientForm } from '../patient-form/patient-form';
 import { Note, NoteService } from '../../services/note';
 import { NoteForm } from '../note-form/note-form';
 import {Assessment, AssessmentService } from '../../services/assessment';
+import { Header } from '../../header/header';
 
 @Component({
   selector: 'app-patient-detail',
   standalone : true,
-  imports: [PatientForm, NoteForm],
+  imports: [PatientForm, NoteForm, Header],
   templateUrl: './patient-detail.html',
   styleUrl: './patient-detail.scss',
 })
