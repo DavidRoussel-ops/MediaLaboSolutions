@@ -91,4 +91,19 @@ export class PatientDetail implements OnInit {
       this.loadAssessment();
     });
   }
+
+  getRiskClass(risk: string | undefined): string {
+    switch (risk) {
+      case "NONE":
+        return "risk-none";
+      case "BORDERLINE":
+        return "risk-borderline";
+      case "IN_DANGER":
+        return "risk-danger";
+      case "EARLY_ONSET":
+        return "risk-early";
+      default:
+        return "";
+    }
+  }
 }

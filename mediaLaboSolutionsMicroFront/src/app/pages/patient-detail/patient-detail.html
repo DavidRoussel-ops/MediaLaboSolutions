@@ -18,7 +18,7 @@
       </div>
 
       @if (assessment()) {
-        <p class="assessment">
+        <p class="assessment" [ngClass]="getRiskClass(assessment()?.riskLevel)">
           <strong>Évaluation risque du patient :</strong> {{ assessment()?.riskLevel }}
         </p>
       }
