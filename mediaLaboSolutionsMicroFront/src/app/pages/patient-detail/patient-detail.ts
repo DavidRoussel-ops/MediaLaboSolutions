@@ -6,11 +6,12 @@ import { Note, NoteService } from '../../services/note';
 import { NoteForm } from '../note-form/note-form';
 import {Assessment, AssessmentService } from '../../services/assessment';
 import { Header } from '../../header/header';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-patient-detail',
   standalone : true,
-  imports: [PatientForm, NoteForm, Header],
+  imports: [PatientForm, NoteForm, Header, CommonModule],
   templateUrl: './patient-detail.html',
   styleUrl: './patient-detail.scss',
 })
