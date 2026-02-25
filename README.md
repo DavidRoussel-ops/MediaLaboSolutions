@@ -148,7 +148,7 @@ docker compose up --build
 Les diagrammes suivants seront ajoutés :
 
 - **Diagramme d’architecture**
-  ![Diagramme Architecture.drawio.png](/diagrammes/Diagramme_Architecture.drawio.png)
+  ![Diagramme Architecture.drawio.png](/diagrammes/Diagramme_ArchitectureV1.1.drawio.png)
 - **Diagramme de classes**
 - **Diagramme de séquence**
 
