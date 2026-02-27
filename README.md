@@ -152,6 +152,7 @@ Les diagrammes suivants seront ajoutés :
 - **Diagramme de classes**
   ![Diagramme Architecture.drawio.png](/diagrammes/UML_Class.drawio.png)
 - **Diagramme de séquence**
+  ![Diagramme Architecture.drawio.png](/diagrammes/Diagramme_sequence.drawio.png)
 
 ---
 
