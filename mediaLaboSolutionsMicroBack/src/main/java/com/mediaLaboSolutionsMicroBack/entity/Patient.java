@@ -4,32 +4,44 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+/**
+ * Entité représentant un patient
+ */
 @Entity
 public class Patient {
+    // Identifiant unique du patient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // Nom du patient
     @Column(nullable = false)
     private String nom;
+    // Prénom du patient
     @Column(nullable = false)
     private String prenom;
+    // Date de naissance du patient
     @Column(name = "date_naissance", nullable = false)
     private LocalDate dateNaissance;
 
+    // Genre du patient
     @ManyToOne(optional = false)
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
+    // Adresse du patient
     @OneToOne
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
+    // Téléphone du patient
     @OneToOne
     @JoinColumn(name = "telephone_id")
     private Telephone telephone;
 
+    // Constructeur par défaut
     public Patient() {}
 
+    // Constructeur complet
     public Patient(Long id, String nom, String prenom, LocalDate dateNaissance, Genre genre, Adresse adresse, Telephone telephone) {
         this.id = id;
         this.nom = nom;
@@ -39,6 +51,8 @@ public class Patient {
         this.adresse = adresse;
         this.telephone = telephone;
     }
+
+    // ----- Getters et Setters -----
 
     public Long getId() {
         return id;

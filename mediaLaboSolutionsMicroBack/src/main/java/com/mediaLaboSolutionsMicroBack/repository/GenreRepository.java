@@ -3,7 +3,14 @@ package com.mediaLaboSolutionsMicroBack.repository;
 import com.mediaLaboSolutionsMicroBack.entity.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * Repository JPA pour l'entité Genre
+ */
 public interface GenreRepository extends JpaRepository<Genre, Long> {
-    //Permet de retrouver un patient via le libelle de son genre M ou F
+    /**
+     * Recherche un genre grace à son libelle
+     * @param libelle
+     * @return Genre
+     */
     Genre findByLibelle(String libelle);
 }

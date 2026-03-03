@@ -1,24 +1,29 @@
 package com.mediaLaboSolutionsMicroBack.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+/**
+ * Entité représentant le téléphone
+ */
 @Entity
 public class Telephone {
+    // Indentifiant unique du téléphone
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    // Numéro du téléphone
     private String numero;
 
+    // Constructeur par défaut
     public Telephone(){}
 
+    // Constructeur complet
     public Telephone(Long id, String numero) {
         this.id = id;
         this.numero = numero;
     }
+
+    // ----- Getters et Setters -----
 
     public Long getId() {
         return id;
