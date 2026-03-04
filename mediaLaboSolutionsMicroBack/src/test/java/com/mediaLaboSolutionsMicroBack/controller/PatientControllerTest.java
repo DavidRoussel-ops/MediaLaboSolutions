@@ -144,7 +144,7 @@ public class PatientControllerTest {
     @Test
     void testDeletePatientNotFound() throws Exception {
         when(service.deletePatient(999L)).thenReturn(false);
-        
+
         mockMvc.perform(delete("/api/patients/999"))
                 .andExpect(status().isNotFound());
     }
