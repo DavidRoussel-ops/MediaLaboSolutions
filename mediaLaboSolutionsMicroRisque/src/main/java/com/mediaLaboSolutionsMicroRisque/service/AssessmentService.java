@@ -10,17 +10,30 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
+/**
+ * Service charger de calculé le niveau de risque d'un patient
+ */
 @Service
 public class AssessmentService {
 
     private final PatientClient patientClient;
     private final NotesClient notesClient;
 
+    /**
+     * Injection des client REST pour les patients et notes
+     * @param patientClient
+     * @param notesClient
+     */
     public AssessmentService(PatientClient patientClient, NotesClient notesClient) {
         this.patientClient = patientClient;
         this.notesClient = notesClient;
     }
 
+    /**
+     * Calcule le résultat de l'évaluation du risque pour un patient
+     * @param patientId
+     * @return AssessmentResult
+     */
     public AssessmentResult assessmentResult(Integer patientId) {
         PatientDto patientDto = patientClient.getPatientById(patientId);
         List<NoteDto> noteDtos = notesClient.getNotesByPatient(patientId);
@@ -42,11 +55,21 @@ public class AssessmentService {
         return result;
     }
 
+    /**
+     * Calcule l'age d'un patient
+     * @param dob
+     * @return int
+     */
     int calculateAge(String dob) {
         if (dob == null || dob.isBlank()) return 0;
         return Period.between(LocalDate.parse(dob), LocalDate.now()).getYears();
     }
 
+    /**
+     * Compte le nombre de déclencheurs présents dans les notes
+     * @param noteDtos
+     * @return int
+     */
     int countTriggers(List<NoteDto> noteDtos) {
         String[] triggers = {
                 "Hémoglobine A1C", "Microalbumine", "Taille", "Poids",
@@ -66,6 +89,13 @@ public class AssessmentService {
         return count;
     }
 
+    /**
+     * Détermine le niveau de rsique selon l'age, le genre et le nombre de déclencheur
+     * @param age
+     * @param gender
+     * @param triggers
+     * @return RiskLevel
+     */
     RiskLevel computeRiskLevel(int age, String gender, int triggers) {
         if (triggers == 0) return RiskLevel.NONE;
 

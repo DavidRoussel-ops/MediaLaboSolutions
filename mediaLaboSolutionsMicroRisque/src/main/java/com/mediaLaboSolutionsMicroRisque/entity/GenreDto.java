@@ -1,9 +1,16 @@
 package com.mediaLaboSolutionsMicroRisque.entity;
 
+/**
+ * Représente un Genre utiliser comme DTO
+ */
 public class GenreDto {
 
+    // Identifiant unique du Genre
     private Integer id;
+    // Libelle du genre
     private String libelle;
+
+    // ----- Getters et Setters -----
 
     public Integer getId() {
         return id;

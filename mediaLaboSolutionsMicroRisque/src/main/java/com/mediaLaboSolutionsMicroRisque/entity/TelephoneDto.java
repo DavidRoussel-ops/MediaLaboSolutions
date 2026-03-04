@@ -1,9 +1,16 @@
 package com.mediaLaboSolutionsMicroRisque.entity;
 
+/**
+ * Représente un Telephone utiliser comme DTO
+ */
 public class TelephoneDto {
 
+    // Identifiant unique du téléphone
     private Integer id;
+    // Numéro du téléphone
     private String numero;
+
+    // ----- Getters et Setters -----
 
     public Integer getId() {
         return id;

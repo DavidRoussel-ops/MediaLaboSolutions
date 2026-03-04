@@ -1,14 +1,26 @@
 package com.mediaLaboSolutionsMicroRisque.entity;
 
+/**
+ * Représente le résultat complet de l'évaluation du risque médical d'un patient
+ */
 public class AssessmentResult {
 
+    // Identifiant du patient évalué
     private Integer patientId;
+    // Nom complet d'un patient
     private String patientName;
+    // Age du patient
     private int age;
+    // Genre du patient
     private String gender;
+    // Nombre de déclancheurs détectés
     private int triggerCount;
+    // Niveau de risque
     private RiskLevel riskLevel;
+    // Message complet explicatif
     private String message;
+
+    // ----- Getters et Setters -----
 
     public Integer getPatientId() {
         return patientId;

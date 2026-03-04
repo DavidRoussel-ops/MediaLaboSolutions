@@ -8,15 +8,27 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+/**
+ * REST permettant de communiquer avec le microservice Notes
+ */
 @Service
 public class NotesClient {
     
     private final RestTemplate restTemplate;
-    
+
+    /**
+     * Injection du RestTemplate
+     * @param restTemplate
+     */
     public NotesClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-    
+
+    /**
+     * Récupère toute les notes associée à un patient
+     * @param id
+     * @return List<NoteDto>
+     */
     public List<NoteDto> getNotesByPatient(Integer id) {
         return restTemplate.exchange(
                 "http://notes-service:8082/api/notes/patient/" + id,

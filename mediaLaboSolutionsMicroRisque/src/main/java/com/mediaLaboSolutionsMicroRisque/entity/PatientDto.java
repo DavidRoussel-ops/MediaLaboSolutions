@@ -1,14 +1,26 @@
 package com.mediaLaboSolutionsMicroRisque.entity;
 
+/**
+ * Représente un Patient utiliser comme DTO
+ */
 public class PatientDto {
 
+    // Identifiant unique d'un Patient
     private Integer id;
+    // Nom d'un patient
     private String nom;
+    // Prénom d'un patient
     private String prenom;
+    // Date de naissance d'un patient
     private String dateNaissance;
+    // Genre du patient
     private GenreDto genre;
+    // Adresse d'un patient
     private AdresseDto adresse;
+    // Téléphone d'un patient
     private TelephoneDto telephone;
+
+    // ----- Getters et Setters -----
 
     public Integer getId() {
         return id;

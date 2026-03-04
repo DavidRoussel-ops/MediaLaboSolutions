@@ -1,9 +1,16 @@
 package com.mediaLaboSolutionsMicroRisque.entity;
 
+/**
+ * Représente une adresse utiliser comme DTO
+ */
 public class AdresseDto {
 
+    // Identifaint unique de l'adresse
     private Integer id;
+    // Libelle de l'adresse
     private String libelle;
+
+    // ----- Getters et Setters -----
 
     public Integer getId() {
         return id;
