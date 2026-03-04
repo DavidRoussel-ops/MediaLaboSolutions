@@ -38,7 +38,7 @@ public class AssessmentControllerTest {
 
         when(assessmentService.assessmentResult(1)).thenReturn(result);
 
-        mockMvc.perform(get("/assess/1")
+        mockMvc.perform(get("/api/assess/1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.patientId").value(1))
@@ -54,7 +54,7 @@ public class AssessmentControllerTest {
     public void assessmentResult404() throws Exception {
         when(assessmentService.assessmentResult(99)).thenThrow(new RuntimeException("Patient not found"));
 
-        mockMvc.perform(get("/assess/99")
+        mockMvc.perform(get("/api/assess/99")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
@@ -63,7 +63,7 @@ public class AssessmentControllerTest {
     public void assessmentResult500() throws Exception {
         when(assessmentService.assessmentResult(1)).thenThrow(new RuntimeException("Unexpected error"));
 
-        mockMvc.perform(get("/assess/1")
+        mockMvc.perform(get("/api/assess/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError());
     }
