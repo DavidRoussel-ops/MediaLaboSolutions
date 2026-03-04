@@ -2,46 +2,51 @@ package com.mediaLaboSolutionsMicroBack.controller;
 
 import com.mediaLaboSolutionsMicroBack.entity.Genre;
 import com.mediaLaboSolutionsMicroBack.entity.Patient;
-import com.mediaLaboSolutionsMicroBack.repository.GenreRepository;
-import com.mediaLaboSolutionsMicroBack.repository.PatientRepository;
 import com.mediaLaboSolutionsMicroBack.service.PatientService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@WebMvcTest(PatientController.class)
 @AutoConfigureMockMvc
 public class PatientControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private PatientRepository patientRepository;
-
-    @Autowired
+    @MockitoBean
     private PatientService service;
 
-    @Autowired
-    private GenreRepository genreRepository;
+    private Patient patient;
+    private Genre genre;
 
     @BeforeEach
-    public void setUp() {
-        patientRepository.deleteAll();
-        genreRepository.deleteAll();
-        Genre genre = genreRepository.save(new Genre(null, "M"));
-        patientRepository.save(new Patient(null, "Dupont", "Michel", LocalDate.of(1990,5,5), genre, null, null));
+    void setUp() {
+        genre = new Genre(1L, "M");
+        patient = new Patient(1L, "Dupont", "Michel",
+                LocalDate.of(1990, 5, 5), genre, null, null);
+
+        when(service.getAllPatients()).thenReturn(List.of(patient));
+        when(service.getPatientById(1L)).thenReturn(Optional.of(patient));
+        when(service.getPatientById(999L)).thenReturn(Optional.empty());
     }
+
 
     @Test
     public void testGetAllPatients() throws Exception {
@@ -52,9 +57,7 @@ public class PatientControllerTest {
 
     @Test
     public void testGetPatientByIdFound() throws Exception {
-        Patient patient = service.getAllPatients().get(0);
-
-        mockMvc.perform(get("/api/patients/" + patient.getId()))
+        mockMvc.perform(get("/api/patients/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.prenom").value("Michel"));
     }
@@ -67,7 +70,9 @@ public class PatientControllerTest {
 
     @Test
     public void testCreatePatient() throws Exception {
-        Genre genre = genreRepository.findAll().get(0);
+        Patient savedPatient = new Patient( 1L, "Dupont", "Marcel",
+                LocalDate.of(1990, 5, 5), genre, null, null );
+        when(service.createPatient(any(Patient.class))).thenReturn(savedPatient);
 
         String jsonPatient = """
                 {
@@ -89,8 +94,9 @@ public class PatientControllerTest {
 
     @Test
     void testUpdatePatient() throws Exception {
-        Patient patient = service.getAllPatients().get(0);
-        Genre genre = genreRepository.findAll().get(0);
+        Patient patient = new Patient( 1L, "Dupont", "Pierre",
+                LocalDate.of(1990, 5, 5), genre, null, null );
+        when(service.updatePatient(eq(1L), any(Patient.class))).thenReturn(Optional.of(patient));
 
         String json = """
                 {
@@ -103,7 +109,7 @@ public class PatientControllerTest {
                 }
                 """.formatted(genre.getId());
 
-        mockMvc.perform(put("/api/patients/" + patient.getId())
+        mockMvc.perform(put("/api/patients/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
@@ -112,6 +118,7 @@ public class PatientControllerTest {
 
     @Test
     void testUpdatePatientNotFound() throws Exception {
+        when(service.updatePatient(eq(999L), any(Patient.class))).thenReturn(Optional.empty());
         String json = """
                 {
                   "nom": "Martin",
@@ -128,14 +135,16 @@ public class PatientControllerTest {
     
     @Test
     void testDeletePatientFound() throws Exception {
-        Patient patient = service.getAllPatients().get(0);
+        when(service.deletePatient(1L)).thenReturn(true);
 
-        mockMvc.perform(delete("/api/patients/" + patient.getId()))
+        mockMvc.perform(delete("/api/patients/1"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     void testDeletePatientNotFound() throws Exception {
+        when(service.deletePatient(999L)).thenReturn(false);
+        
         mockMvc.perform(delete("/api/patients/999"))
                 .andExpect(status().isNotFound());
     }
