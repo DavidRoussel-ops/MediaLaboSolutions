@@ -8,6 +8,7 @@ import {Assessment, AssessmentService } from '../../services/assessment';
 import { Header } from '../../header/header';
 import { CommonModule } from '@angular/common';
 
+// Composant affichant le détail d'un patient
 @Component({
   selector: 'app-patient-detail',
   standalone : true,
@@ -34,6 +35,7 @@ export class PatientDetail implements OnInit {
     private assessmentService : AssessmentService
   ) {}
 
+  // Charge les données du patient, ses notes et son évaluation de risque
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.patientService.getPatientById(id).subscribe(data => {
@@ -47,6 +49,7 @@ export class PatientDetail implements OnInit {
     this.loadAssessment();
   }
 
+  // Charge l'évaluation du risque du patient
   loadAssessment() : void {
     this.assessmentService.getAssessment(this.patientId).subscribe(a => {
       console.log("Assessment reçu : ", a);
@@ -54,6 +57,7 @@ export class PatientDetail implements OnInit {
     });
   }
 
+  // Met à jour les informations du patient
   updatePatient(patient : any) {
     const id = this.route.snapshot.params['id'];
     console.log("Formulaire reçu MAJ : ", patient);
@@ -66,20 +70,24 @@ export class PatientDetail implements OnInit {
     });
   }
 
+  // Affiche ou masque le formulaire de mise à jour 
   toogleForm() {
     this.showForm = !this.showForm;
   }
 
+  // Affiche ou masque me formulaire d'ajout de note
   toogleFormNote() {
     this.showFormNote = !this.showFormNote;
   }
 
+  // Charge toutes les notes du patient
   loadNotes() : void {
     this.noteService.getNotesByPatient(this.patientId).subscribe(data => {
       this.notes.set(data);
     });
   }
 
+  // Ajoute une nouvelle note pour le patient
   handleNoteAdded(noteText : string) : void {
     const note : Note = {
       patId : this.patientId,
@@ -93,6 +101,7 @@ export class PatientDetail implements OnInit {
     });
   }
 
+  // Retourne une classe CSS enfonction du niveau de risque
   getRiskClass(risk: string | undefined): string {
     switch (risk) {
       case "NONE":

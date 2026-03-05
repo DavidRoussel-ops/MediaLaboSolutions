@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+// Composant de l'en-tête
 @Component({
   selector: 'app-header',
   imports: [],

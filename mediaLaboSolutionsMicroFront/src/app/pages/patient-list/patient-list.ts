@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PatientForm } from '../patient-form/patient-form';
 import { Header } from '../../header/header';
 
+// Composant affichant la liste des patients
 @Component({
   selector: 'app-patient-list',
   standalone: true,
@@ -20,6 +21,7 @@ export class PatientList implements OnInit {
 
   constructor(private patientService: PatientService) {}
 
+  // Charge la liste des patients au démarrage du composant
   ngOnInit(): void {
     this.patientService.getAllPatients().subscribe(data => {
       console.log("Patients reçu du back :", data);
@@ -28,15 +30,7 @@ export class PatientList implements OnInit {
     });
   }
 
-  /*addPatient(patient : any) {
-    console.log("Formulaire reçu ajout : ", patient);
-    this.patientService.addPatient(patient).subscribe(() => {
-      console.log("Patient bien enregistrer.");
-      this.loadPatients();
-      this.showForm = false;
-    })
-  }*/
-
+  // Ajoute un patient et recharge la liste
   addPatient(patient: any): void {
   console.log("Formulaire reçu (ajout) :", patient);
   this.patientService.addPatient(patient).subscribe(() => {
@@ -45,12 +39,14 @@ export class PatientList implements OnInit {
   });
 }
 
+  // Recharge la liste des patients 
   loadPatients() {
     this.patientService.getAllPatients().subscribe(data => {
       this.patients.set(data);
     })
   }
 
+  // Affiche ou masque le formulaire
   toogleForm() {
     this.showForm = !this.showForm;
   }

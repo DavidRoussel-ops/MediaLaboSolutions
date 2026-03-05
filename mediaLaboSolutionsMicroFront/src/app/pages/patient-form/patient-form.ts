@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+// Composant du formulaire de création ou modification d'un patient
 @Component({
   selector: 'app-patient-form',
   standalone : true,
@@ -42,18 +43,21 @@ export class PatientForm {
     });
   }
 
+  // Pré-rempli le formulaire quand le données patient sont présente
   ngOnInit() : void {
     if (this.patientData) {
       this.patientForm.patchValue(this.patientData);
     }
   }
 
+  // Soumet le formulaire quand il est valide
   onSubmit() : void {
     if (this.patientForm.valid) {
       this.formSubmit.emit(this.patientForm.value);
     }
   }
 
+  // Met à jour le champ genre
   onGenreChange(event : any) {
     const selectedId = +event.target.value;
     const selectedGenre = this.genres.find(genre => genre.id === selectedId);
