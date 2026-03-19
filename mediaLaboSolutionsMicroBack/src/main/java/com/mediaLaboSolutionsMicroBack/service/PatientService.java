@@ -60,6 +60,13 @@ public class PatientService {
      * @return Patient
      */
     public Patient createPatient(Patient patient) {
+        if (patient.getAdresse() == null) {
+            patient.setAdresse(new Adresse());
+        }
+
+        if (patient.getTelephone() == null) {
+            patient.setTelephone(new Telephone());
+        }
         return patientRepository.save(patient);
     }
 
