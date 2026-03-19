@@ -1,6 +1,8 @@
 package com.mediaLaboSolutionsMicroBack.service;
 
+import com.mediaLaboSolutionsMicroBack.entity.Adresse;
 import com.mediaLaboSolutionsMicroBack.entity.Patient;
+import com.mediaLaboSolutionsMicroBack.entity.Telephone;
 import com.mediaLaboSolutionsMicroBack.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
@@ -73,8 +75,14 @@ public class PatientService {
             patient.setPrenom(updated.getPrenom());
             patient.setDateNaissance(updated.getDateNaissance());
             patient.setGenre(updated.getGenre());
-            patient.setAdresse(updated.getAdresse());
-            patient.setTelephone(updated.getTelephone());
+            if (patient.getAdresse() == null) {
+                patient.setAdresse(new Adresse());
+            }
+            patient.getAdresse().setLibelle(updated.getAdresse().getLibelle());
+            if (patient.getTelephone() == null) {
+                patient.setTelephone(new Telephone());
+            }
+            patient.getTelephone().setNumero(updated.getTelephone().getNumero());
             return patientRepository.save(patient);
         });
     }
