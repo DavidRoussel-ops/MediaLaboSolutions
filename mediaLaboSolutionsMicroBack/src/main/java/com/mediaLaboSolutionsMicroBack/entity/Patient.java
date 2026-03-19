@@ -29,12 +29,12 @@ public class Patient {
     private Genre genre;
 
     // Adresse du patient
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
     // Téléphone du patient
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "telephone_id")
     private Telephone telephone;
 
