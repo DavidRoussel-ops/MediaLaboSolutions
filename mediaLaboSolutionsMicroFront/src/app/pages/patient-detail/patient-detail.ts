@@ -37,14 +37,12 @@ export class PatientDetail implements OnInit {
 
   // Charge les données du patient, ses notes et son évaluation de risque
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    this.patientService.getPatientById(id).subscribe(data => {
-      console.log("Patient reçu : ", data);
+    this.patientId = Number(this.route.snapshot.paramMap.get('id'));
+    this.patientService.getPatientById(this.patientId).subscribe(data => {
       this.patient.set(data);
+      this.patientName = data.nom;
       this.loaded.set(true);
     });
-    this.patientId = Number(this.route.snapshot.paramMap.get('id'));
-    this.patientService.getPatientById(this.patientId).subscribe(p => this.patientName = p.nom);
     this.loadNotes();
     this.loadAssessment();
   }
@@ -59,13 +57,11 @@ export class PatientDetail implements OnInit {
 
   // Met à jour les informations du patient
   updatePatient(patient : any) {
-    const id = this.route.snapshot.params['id'];
-    console.log("Formulaire reçu MAJ : ", patient);
-    this.patientService.updatePatient(id, patient).subscribe(() => {
-      console.log("Données du patient bien mise à jour.");
-      this.patientService.getPatientById(id).subscribe(data => {
-        this.patient.set(data);
-      });
+    /*const id = this.route.snapshot.params['id'];
+    console.log("Formulaire reçu MAJ : ", patient);*/
+    this.patientService.updatePatient(this.patientId, patient).subscribe(updatePatient => {
+      this.patient.set(updatePatient);
+      this.patientName = updatePatient.nom;
       this.showForm = false;
     });
   }
