@@ -57,8 +57,6 @@ export class PatientDetail implements OnInit {
 
   // Met à jour les informations du patient
   updatePatient(patient : any) {
-    /*const id = this.route.snapshot.params['id'];
-    console.log("Formulaire reçu MAJ : ", patient);*/
     this.patientService.updatePatient(this.patientId, patient).subscribe(updatePatient => {
       this.patient.set(updatePatient);
       this.patientName = updatePatient.nom;
