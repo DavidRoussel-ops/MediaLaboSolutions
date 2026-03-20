@@ -1,7 +1,9 @@
 package com.mediaLaboSolutionsMicroBack.service;
 
+import com.mediaLaboSolutionsMicroBack.entity.Adresse;
 import com.mediaLaboSolutionsMicroBack.entity.Genre;
 import com.mediaLaboSolutionsMicroBack.entity.Patient;
+import com.mediaLaboSolutionsMicroBack.entity.Telephone;
 import com.mediaLaboSolutionsMicroBack.repository.PatientRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -91,9 +93,11 @@ public class PatientServiceTest {
 
     @Test
     public void testUpdatePatient() {
+        Adresse adresse = new Adresse();
+        Telephone telephone = new Telephone();
         LocalDate dateExpected = LocalDate.of(1995,5,5);
         Patient existing = new Patient(1L, "Dupont", "Jean", LocalDate.of(1990,1,1), new Genre(1L,"Homme"), null, null);
-        Patient updated =  new Patient(null, "Dupont", "Michel", LocalDate.of(1995,5,5), new Genre(1L,"Homme"), null, null);
+        Patient updated =  new Patient(null, "Dupont", "Michel", LocalDate.of(1995,5,5), new Genre(1L,"Homme"), adresse, telephone);
 
         when(patientRepository.findById(1L)).thenReturn(Optional.of(existing));
         when(patientRepository.save(existing)).thenReturn(existing);
